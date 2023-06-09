@@ -1,19 +1,59 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+//Первый семинар.
+//        1. Выбросить случайное целое число в диапазоне от 0 до 2000 и сохранить в i
+//        2. Посчитать и сохранить в n номер старшего значащего бита выпавшего числа
+//        3. Найти все кратные n числа в диапазоне от i до Short.MAX_VALUE сохранить в массив m1
+//        4. Найти все некратные n числа в диапазоне от Short.MIN_VALUE до i и сохранить в массив m2
+//        Пункты реализовать в методе main
+//        *Пункты реализовать в разных методах
+//   int i = new Random().nextInt(k); //это кидалка случайных чисел!)
+
+import java.util.Random;
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Random random = new Random();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        int i = new Random().nextInt(2001);
+        System.out.println("Случайное число i : " + i);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        int n = Integer.toBinaryString(i).length() - 1;
+        System.out.println("Номер старшего значения бита n :  " + n);
+        short count = 0;
+        for (int j = i; j < Short.MAX_VALUE; j++) {
+            if (j % n == 0) {
+                count++;
+            }
+        }
+        // Создаем массив m1
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int j = i - 1; j < Short.MAX_VALUE; j++) {
+            if (j % n == 0) {
+                list.add(j);
+            }
+        }
+
+        short count2 = 0;
+        for (int j = Short.MIN_VALUE; j < i; j++) {
+            if (j % n != 0) {
+                count2++;
+            }
+            System.out.println("Массив м1: " + list);
+            // Создаем массив m2
+            ArrayList<Integer> list2 = new ArrayList<Integer>();
+            for (int k = Short.MIN_VALUE; k < i; k++) {
+                if (k % n != 0) {
+                    list2.add(k);
+                }
+                System.out.println("Массив м2: " + list2);
+            }
         }
     }
 }
+
+
+
+
+
